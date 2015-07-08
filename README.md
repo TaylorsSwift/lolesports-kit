@@ -13,12 +13,9 @@ Once the project is complete, it will be available via cocoapods. For now, add i
 ## Example
 
 ```swift
-	// Get Leagues and print their labels
-        LolEsportsClient.sharedInstance().getLeagues() { leagues, error in
-            if let leagues = leagues {
-                for league in leagues {
-                    println(league.label!)
-                }
-            }
-        }
+// Get Leagues and print their labels
+LolEsportsClient.sharedInstance().getLeagues() { 
+    (leagues, error) -> Void in
+    // handle the response or error
+}
 ```
