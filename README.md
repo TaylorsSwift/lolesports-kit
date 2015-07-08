@@ -1,4 +1,4 @@
-# eSportsKit
+# LoL eSports Kit
 
 League of Legends eSports iOS client library for the lolesports.com API
 
