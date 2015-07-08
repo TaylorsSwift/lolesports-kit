@@ -29,6 +29,7 @@ extension LolEsportsClient {
         }
     }
     
+    // MARK: Get Matches
     func getMatches(tournamentId: String, completionHandler: (matches: [Match]?, error: NSError?) -> Void) {
         
         let parameters: [String : AnyObject!] = [
@@ -48,4 +49,18 @@ extension LolEsportsClient {
         }
     }
     
+    // MARK: Get Series
+    func getSeries(completionHandler: (series: [Series]?, error: NSError?) -> Void) {
+        
+        taskGET(Methods.Series, parameters: nil) { json, error in
+            
+            if let downloadError = error {
+                completionHandler(series: nil, error: error)
+            } else {
+                let series = Series.seriesFromResults(json as! [AnyObject])
+                completionHandler(series: series, error: nil)
+            }
+            
+        }
+    }
 }

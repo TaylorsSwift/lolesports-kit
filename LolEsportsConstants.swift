@@ -29,8 +29,10 @@ extension LolEsportsClient {
         // MARK: Schedule
         static let Schedule: String = "schedule.json"
         
-        // MARK: Misc
+        // MARK: Series
         static let Series: String = "series.json"
+        
+        // MARK: Standings
         static let Standings: String = "standings.json"
         
     }
@@ -56,8 +58,7 @@ extension LolEsportsClient {
         
         // MARK: League
         static let Leagues: String = "leagues"
-        static let Id: String = "id"
-        static let Label: String = "label"
+
         static let Color: String = "color"
         static let LeagueImage: String = "leagueImage"
         static let TournamentId: String = "defaultTournamentId"
@@ -75,8 +76,15 @@ extension LolEsportsClient {
         static let PolldaddyId: String = "polldaddyId"
         static let Name: String = "name"
         
+        // MARK: Series
+        static let LabelPublic: String = "labelPublic"
+        static let Season: String = "season"
+        static let Tournaments: String = "tournaments"
+        
         // MARK: Shared
         static let URL: String = "url"
+        static let Id: String = "id"
+        static let Label: String = "label"
         
     }
     

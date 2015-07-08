@@ -20,9 +20,12 @@ class LolEsportsClient : NSObject {
     
     // MARK: - GET
     
-    func taskGET(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskGET(method: String, parameters: [String : AnyObject]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        let urlString = Constants.BaseURL + method + LolEsportsClient.escapedParameters(parameters)
+        var urlString = Constants.BaseURL + method
+        if let parameters = parameters {
+            urlString += LolEsportsClient.escapedParameters(parameters)
+        }
         let url = NSURL(string: urlString)!
         let request = NSURLRequest(URL: url)
         
