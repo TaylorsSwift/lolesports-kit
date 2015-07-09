@@ -30,10 +30,11 @@ extension LolEsportsClient {
     }
     
     // MARK: Get Matches
-    func getMatches(tournamentId: String, completionHandler: (matches: [Match]?, error: NSError?) -> Void) {
+    // Returns the schedule of matches for the specified tournament
+    func getMatches(tournamentId: Int, completionHandler: (matches: [Match]?, error: NSError?) -> Void) {
         
         let parameters: [String : AnyObject!] = [
-            Parameters.TournamentId : tournamentId.toInt(),
+            Parameters.TournamentId : tournamentId,
             Parameters.IncludeFinished : false
         ]
         
@@ -59,6 +60,25 @@ extension LolEsportsClient {
             } else {
                 let series = Series.seriesFromResults(json as! [AnyObject])
                 completionHandler(series: series, error: nil)
+            }
+            
+        }
+    }
+    
+    // MARK: Get Standings
+    func getStandings(tournamentId: Int, completionHandler: (standings: [Standing]?, error: NSError?) -> Void) {
+        
+        let parameters: [String : AnyObject!] = [
+            Parameters.TournamentId : tournamentId
+        ]
+        
+        taskGET(Methods.Standings, parameters: parameters) { json, error in
+            
+            if let downloadError = error {
+                completionHandler(standings: nil, error: error)
+            } else {
+                let standings = Standing.standingsFromResults(json as! [AnyObject])
+                completionHandler(standings: standings, error: nil)
             }
             
         }

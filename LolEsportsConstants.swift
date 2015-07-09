@@ -58,12 +58,24 @@ extension LolEsportsClient {
         
         // MARK: League
         static let Leagues: String = "leagues"
-
         static let Color: String = "color"
         static let LeagueImage: String = "leagueImage"
         static let TournamentId: String = "defaultTournamentId"
         static let SeriesId: String = "defaultSeriesId"
         static let ShortName: String = "shortName"
+        static let LeagueTournaments: String = "leagueTournaments"
+        static let NoVods: String = "noVods"
+        static let MenuWeight: String = "menuWeight"
+        static let InternationalLiveStream: String = "internationalLiveStream"
+        static let Published: String = "published"
+        
+        // MARK: LiveStreamLanguage
+        static let Language: String = "language"
+        static let DisplayLanguage: String = "display_language"
+        static let Streams: String = "streams"
+        
+        // MARK: LiveStream
+        static let Title: String = "title"
         
         // MARK: Schedule
         static let DateTime: String = "dateTime"
@@ -80,6 +92,13 @@ extension LolEsportsClient {
         static let LabelPublic: String = "labelPublic"
         static let Season: String = "season"
         static let Tournaments: String = "tournaments"
+        
+        // MARK: Standings
+        static let TeamId: String = "teamId"
+        static let TeamTitle: String = "teamTitle"
+        static let Wins: String = "wins"
+        static let Losses: String = "losses"
+        static let TeamRank: String = "teamRank"
         
         // MARK: Shared
         static let URL: String = "url"
