@@ -10,19 +10,21 @@ import Foundation
 
 struct Series {
     
-    var labelPublic: String?
-    var season: String?
-    var label: String?
-    var id: String?
-    var url: String?
+    var labelPublic: String? // Name of series suitable for public consumption
+    var season: String? // Season this series is in
+    var label: String? // Name of the series for administrative purposes
+    var id: String? // Unique numeric identifier for this series
+    var url: String? //  URL to this series's page
+    var tournaments: [String]? //  IDs of the tournaments belonging to this series
     
-    init(dictionary: AnyObject) {
+    init(data: AnyObject) {
         
-        labelPublic = dictionary[LolEsportsClient.JSONKeys.LabelPublic] as? String
-        season = dictionary[LolEsportsClient.JSONKeys.Season] as? String
-        label = dictionary[LolEsportsClient.JSONKeys.Label] as? String
-        id = dictionary[LolEsportsClient.JSONKeys.Id] as? String
-        url = dictionary[LolEsportsClient.JSONKeys.URL] as? String
+        labelPublic = data[LolEsportsClient.JSONKeys.LabelPublic] as? String
+        season = data[LolEsportsClient.JSONKeys.Season] as? String
+        label = data[LolEsportsClient.JSONKeys.Label] as? String
+        id = data[LolEsportsClient.JSONKeys.Id] as? String
+        url = data[LolEsportsClient.JSONKeys.URL] as? String
+        tournaments = data[LolEsportsClient.JSONKeys.Tournaments] as? [String]
         
     }
     
@@ -31,7 +33,7 @@ struct Series {
         var series = [Series]()
         
         for value in results {
-            series.append(Series(dictionary: value))
+            series.append(Series(data: value))
         }
         
         return series

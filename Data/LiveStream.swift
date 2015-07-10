@@ -14,10 +14,10 @@ struct LiveStream {
     var title: String? // Display name of the provider.
     var url: String? // URL of the provider's stream.
     
-    init(dictionary: AnyObject) {
+    init(data: AnyObject) {
         
-        title = dictionary[LolEsportsClient.JSONKeys.Title] as? String
-        url = dictionary[LolEsportsClient.JSONKeys.URL] as? String
+        title = data[LolEsportsClient.JSONKeys.Title] as? String
+        url = data[LolEsportsClient.JSONKeys.URL] as? String
         
     }
     
@@ -26,7 +26,7 @@ struct LiveStream {
         var streams = [LiveStream]()
         
         for value in results {
-            streams.append(LiveStream(dictionary: value))
+            streams.append(LiveStream(data: value))
         }
         
         return streams

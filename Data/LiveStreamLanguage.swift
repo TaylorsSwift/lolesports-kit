@@ -14,12 +14,12 @@ struct LiveStreamLanguage {
     var displayLanguage: String? // Text that should appear in the menu list. May include international characters.
     var streams: [LiveStream]?
     
-    init(dictionary: AnyObject) {
+    init(data: AnyObject) {
         
-        language = dictionary[LolEsportsClient.JSONKeys.Language] as? String
-        displayLanguage = dictionary[LolEsportsClient.JSONKeys.DisplayLanguage] as? String
+        language = data[LolEsportsClient.JSONKeys.Language] as? String
+        displayLanguage = data[LolEsportsClient.JSONKeys.DisplayLanguage] as? String
         
-        if let livestreams = dictionary[LolEsportsClient.JSONKeys.Streams] as? [AnyObject] {
+        if let livestreams = data[LolEsportsClient.JSONKeys.Streams] as? [AnyObject] {
             streams = LiveStream.streamsFromResults(livestreams)
         }
     }
@@ -29,7 +29,7 @@ struct LiveStreamLanguage {
         var internationalLiveStream = [LiveStreamLanguage]()
         
         for value in results {
-            internationalLiveStream.append(LiveStreamLanguage(dictionary: value))
+            internationalLiveStream.append(LiveStreamLanguage(data: value))
         }
         
         return internationalLiveStream

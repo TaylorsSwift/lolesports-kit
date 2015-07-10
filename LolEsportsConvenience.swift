@@ -13,9 +13,13 @@ import Foundation
 extension LolEsportsClient {
     
     // MARK: Get Leagues
-    func getLeagues(completionHandler: (leagues: [League]?, error: NSError?) -> Void) {
+    func getLeagues(published: Published, completionHandler: (leagues: [League]?, error: NSError?) -> Void) {
     
-        let parameters = [Parameters.Method : Constants.All]
+        var parameters = [
+            Parameters.Method : Method.All.rawValue,
+            Parameters.Published: published.rawValue
+            
+        ]
         
         taskGET(Methods.League, parameters: parameters) { json, error in
             
@@ -29,14 +33,20 @@ extension LolEsportsClient {
         }
     }
     
-    // MARK: Get Matches
+    // MARK: Get Schedule
     // Returns the schedule of matches for the specified tournament
-    func getMatches(tournamentId: Int, completionHandler: (matches: [Match]?, error: NSError?) -> Void) {
+    func getSchedule(tournamentId: Int, teamId: Int? = nil, includeFinished: Bool = true, includeFuture: Bool = true, includeLive: Bool = true, completionHandler: (matches: [Match]?, error: NSError?) -> Void) {
         
-        let parameters: [String : AnyObject!] = [
+        var parameters: [String : AnyObject!] = [
             Parameters.TournamentId : tournamentId,
-            Parameters.IncludeFinished : false
+            Parameters.IncludeFinished : includeFinished,
+            Parameters.IncludeFuture : includeFuture,
+            Parameters.IncludeLive : includeLive
         ]
+        
+        if let teamIdPara = teamId {
+            parameters[Parameters.TeamId] = teamIdPara
+        }
         
         taskGET(Methods.Schedule, parameters: parameters) { json, error in
             
@@ -83,4 +93,5 @@ extension LolEsportsClient {
             
         }
     }
+ 
 }

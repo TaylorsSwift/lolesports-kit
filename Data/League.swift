@@ -24,22 +24,22 @@ struct League {
     var internationalLiveStream: [LiveStreamLanguage]?
     var published: Bool // Published or hidden
     
-    init(dictionary: [String : AnyObject]) {
+    init(data: [String : AnyObject]) {
         
-        id = dictionary[LolEsportsClient.JSONKeys.Id] as! String
-        color = dictionary[LolEsportsClient.JSONKeys.Color] as? String
-        leagueImage = dictionary[LolEsportsClient.JSONKeys.LeagueImage] as? String
-        tournamentId = dictionary[LolEsportsClient.JSONKeys.TournamentId] as? String
-        seriesId = dictionary[LolEsportsClient.JSONKeys.SeriesId] as? String
-        shortName = dictionary[LolEsportsClient.JSONKeys.ShortName] as? String
-        leagueTournaments = dictionary[LolEsportsClient.JSONKeys.LeagueTournaments] as? [Int]
-        url = dictionary[LolEsportsClient.JSONKeys.URL] as? String
-        longName = dictionary[LolEsportsClient.JSONKeys.Label] as? String
-        noVods = dictionary[LolEsportsClient.JSONKeys.NoVods] as? Int
-        menuWeight = dictionary[LolEsportsClient.JSONKeys.MenuWeight] as? String
-        published = dictionary[LolEsportsClient.JSONKeys.Published] as! Bool
+        id = data[LolEsportsClient.JSONKeys.Id] as! String
+        color = data[LolEsportsClient.JSONKeys.Color] as? String
+        leagueImage = data[LolEsportsClient.JSONKeys.LeagueImage] as? String
+        tournamentId = data[LolEsportsClient.JSONKeys.TournamentId] as? String
+        seriesId = data[LolEsportsClient.JSONKeys.SeriesId] as? String
+        shortName = data[LolEsportsClient.JSONKeys.ShortName] as? String
+        leagueTournaments = data[LolEsportsClient.JSONKeys.LeagueTournaments] as? [Int]
+        url = data[LolEsportsClient.JSONKeys.URL] as? String
+        longName = data[LolEsportsClient.JSONKeys.Label] as? String
+        noVods = data[LolEsportsClient.JSONKeys.NoVods] as? Int
+        menuWeight = data[LolEsportsClient.JSONKeys.MenuWeight] as? String
+        published = data[LolEsportsClient.JSONKeys.Published] as! Bool
         
-        if let livestream = dictionary[LolEsportsClient.JSONKeys.InternationalLiveStream] as? [AnyObject]{
+        if let livestream = data[LolEsportsClient.JSONKeys.InternationalLiveStream] as? [AnyObject]{
             internationalLiveStream = LiveStreamLanguage.internationalLiveStreamFromResults(livestream)
         }
     }
@@ -49,7 +49,7 @@ struct League {
         var leagues = [League]()
         
         for result in results {
-            leagues.append(League(dictionary: result))
+            leagues.append(League(data: result))
         }
         
         return leagues

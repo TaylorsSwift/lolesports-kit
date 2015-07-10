@@ -10,29 +10,44 @@ import Foundation
 
 struct Match {
     
-    var dateTime: String?
-    var winnerId: String?
-    var matchId: String?
-    var url: String?
-    var maxGames: String?
-    var isLive: Bool?
-    var isFinished: String?
-    var liveStreams: Bool?
-    var polldaddyId: String?
-    var name: String?
+    var tournament: MatchTournament? // Tournament object this match belongs to
+    var url: String? // URL to this match's page
+    var dateTime: NSDate? // Timestamp of when this match is scheduled
+    var winnerId: String? // Team ID of this match's winner.
+    var matchId: String? // Unique numeric identifier of this match
+    var maxGames: String? // Maximum number of games playable in this match
+    var isLive: Bool? // Boolean if this match is currently airing in its stream
+    var isFinished: String? // If this match has been completed
+    var contestants: ContestantsRedBlue? // Teams playing in this match, keyed by their map position
+    var liveStreams: LiveStreams? // Streams available for this match
+    var polldaddyId: String? // Unique ID for this match's polldady poll
+    var games: [Game]? // Games in this match
+    var name: String? // Label of this match
     
-    init(dictionary: AnyObject) {
+    init(data: AnyObject) {
         
-        dateTime = dictionary[LolEsportsClient.JSONKeys.DateTime] as? String
-        winnerId = dictionary[LolEsportsClient.JSONKeys.WinnerId] as? String
-        matchId = dictionary[LolEsportsClient.JSONKeys.MatchId] as? String
-        url = dictionary[LolEsportsClient.JSONKeys.URL] as? String
-        maxGames = dictionary[LolEsportsClient.JSONKeys.MaxGames] as? String
-        isLive = dictionary[LolEsportsClient.JSONKeys.IsLive] as? Bool
-        isFinished = dictionary[LolEsportsClient.JSONKeys.IsFinished] as? String
-        liveStreams = dictionary[LolEsportsClient.JSONKeys.LiveStreams] as? Bool
-        polldaddyId = dictionary[LolEsportsClient.JSONKeys.PolldaddyId] as? String
-        name = dictionary[LolEsportsClient.JSONKeys.Name] as? String
+        if let matchTournament: AnyObject = data[LolEsportsClient.JSONKeys.Tournament] {
+            tournament = MatchTournament(data: matchTournament)
+        }
+        url = data[LolEsportsClient.JSONKeys.URL] as? String
+        let date = data[LolEsportsClient.JSONKeys.DateTime] as? String
+        dateTime = date?.toNSDate()
+        winnerId = data[LolEsportsClient.JSONKeys.WinnerId] as? String
+        matchId = data[LolEsportsClient.JSONKeys.MatchId] as? String
+        maxGames = data[LolEsportsClient.JSONKeys.MaxGames] as? String
+        isLive = data[LolEsportsClient.JSONKeys.IsLive] as? Bool
+        isFinished = data[LolEsportsClient.JSONKeys.IsFinished] as? String
+        if let matchContestants: AnyObject = data[LolEsportsClient.JSONKeys.Contestants] {
+            contestants = ContestantsRedBlue(data: matchContestants)
+        }
+        if let matchLiveStreams: AnyObject = data[LolEsportsClient.JSONKeys.LiveStreams] {
+            liveStreams = LiveStreams(data: matchLiveStreams)
+        }
+        polldaddyId = data[LolEsportsClient.JSONKeys.PolldaddyId] as? String
+        if let matchGames: [String : AnyObject] = data[LolEsportsClient.JSONKeys.Games] as? [String : AnyObject] {
+            games = Game.gamesFromResults(matchGames)
+        }
+        name = data[LolEsportsClient.JSONKeys.Name] as? String
         
     }
     
@@ -41,7 +56,7 @@ struct Match {
         var matches = [Match]()
         
         for (key, value) in results {
-            matches.append(Match(dictionary: value))
+            matches.append(Match(data: value))
         }
         
         return matches

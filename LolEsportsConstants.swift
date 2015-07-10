@@ -16,8 +16,6 @@ extension LolEsportsClient {
         // MARK: Base URL
         static let BaseURL: String = "http://na.lolesports.com:80/api/"
         
-        static let All: String = "all"
-        
     }
     
     // MARK: - Methods
@@ -77,7 +75,7 @@ extension LolEsportsClient {
         // MARK: LiveStream
         static let Title: String = "title"
         
-        // MARK: Schedule
+        // MARK: Match
         static let DateTime: String = "dateTime"
         static let WinnerId: String = "winnerId"
         static let MatchId: String = "matchId"
@@ -87,6 +85,27 @@ extension LolEsportsClient {
         static let LiveStreams: String = "liveStreams"
         static let PolldaddyId: String = "polldaddyId"
         static let Name: String = "name"
+        static let Tournament: String = "tournament"
+        static let Contestants: String = "contestants"
+        static let Games: String = "games"
+        
+        // MARK: MatchTournament
+        static let Round: String = "round"
+        
+        // MARK: ContestantsRedBlue
+        static let Blue: String = "blue"
+        static let Red: String = "red"
+        
+        // MARK: SingleContestant
+        static let LogoURL: String = "logoURL"
+        static let Acronym: String = "acronym"
+        
+        // MARK: LiveStreams
+        static let Type: String = "type"
+        static let EmbedCode: String = "embedCode"
+        
+        // MARK: Game
+        static let HasVods: String = "hasVods"
         
         // MARK: Series
         static let LabelPublic: String = "labelPublic"

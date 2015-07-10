@@ -16,13 +16,13 @@ struct Standing {
     var losses: Int? // Number of match losses
     var teamRank: Int? // Rank of team in tournament
     
-    init(dictionary: AnyObject) {
+    init(data: AnyObject) {
         
-        teamId = dictionary[LolEsportsClient.JSONKeys.TeamId] as? Int
-        teamTitle = dictionary[LolEsportsClient.JSONKeys.TeamTitle] as? String
-        wins = dictionary[LolEsportsClient.JSONKeys.Wins] as? Int
-        losses = dictionary[LolEsportsClient.JSONKeys.Losses] as? Int
-        teamRank = dictionary[LolEsportsClient.JSONKeys.TeamRank] as? Int
+        teamId = data[LolEsportsClient.JSONKeys.TeamId] as? Int
+        teamTitle = data[LolEsportsClient.JSONKeys.TeamTitle] as? String
+        wins = data[LolEsportsClient.JSONKeys.Wins] as? Int
+        losses = data[LolEsportsClient.JSONKeys.Losses] as? Int
+        teamRank = data[LolEsportsClient.JSONKeys.TeamRank] as? Int
         
     }
     
@@ -31,7 +31,7 @@ struct Standing {
         var standings = [Standing]()
         
         for value in results {
-            standings.append(Standing(dictionary: value))
+            standings.append(Standing(data: value))
         }
         
         return standings
