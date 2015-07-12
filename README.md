@@ -10,12 +10,57 @@ This library was initially created for an iPhone app I created during a hackatho
 
 Once the project is complete, it will be available via cocoapods. For now, add it directly to your own project.
 
-## Example
+## Examples
 
 ```swift
-// Get Leagues and print their labels
-LolEsportsClient.sharedInstance().getLeagues() { 
+// Get Leagues
+LolEsportsClient.sharedInstance().getLeagues(published: LolEsportsClient.Published.No) {
     (leagues, error) -> Void in
     // handle the response or error
 }
+
+// Get Leagues - default to published only
+LolEsportsClient.sharedInstance().getLeagues() {
+    (leagues, error) -> Void in
+    // handle the response or error
+}
+
+// Get Series
+LolEsportsClient.sharedInstance().getSeries { (series, error) -> Void in
+    // handle the response or error
+}
+
+// Get Schedule
+let tournamentId: Int = 226
+LolEsportsClient.sharedInstance().getSchedule(tournamentId, includeFinished: false, includeFuture: true, includeLive: false) { 
+    (matches, error) -> Void in
+    // handle the response or error
+}
+
+// Get Schedule - default to include finished, future, and live matches
+let tournamentId: Int = 226
+LolEsportsClient.sharedInstance().getSchedule(tournamentId) { 
+    (matches, error) -> Void in
+    // handle the response or error
+}
+
+// Get Standings
+let tournamentId: Int = 226
+LolEsportsClient.sharedInstance().getStandings(tournamentId) { 
+    (standings, error) -> Void in
+    // handle the response or error
+}
+
+// Get Tournaments
+LolEsportsClient.sharedInstance().getTournaments(published: LolEsportsClient.Published.No) { 
+    (tournaments, error) -> Void in
+    // handle the response or error
+}
+
+//Get Tournaments - default to published only
+LolEsportsClient.sharedInstance().getTournaments() { 
+    (tournaments, error) -> Void in
+    // handle the response or error
+}
+
 ```
