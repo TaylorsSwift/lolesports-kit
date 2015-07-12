@@ -19,10 +19,10 @@ struct Game {
         
         id = data[LolEsportsClient.JSONKeys.Id] as? String
         winnerId = data[LolEsportsClient.JSONKeys.WinnerId] as? String
-        /*let noVodInt = data[LolEsportsClient.JSONKeys.NoVods] as? Int
-        noVods = noVodInt?.toBool()
+        let noVodsInt = data[LolEsportsClient.JSONKeys.NoVods] as? Int
+        noVods = noVodsInt?.toBool()
         let hasVodsInt = data[LolEsportsClient.JSONKeys.HasVods] as? Int
-        hasVods = hasVodsInt?.toBool()*/
+        hasVods = hasVodsInt?.toBool()
     }
     
     static func gamesFromResults(results: [String : AnyObject]) -> [Game] {

@@ -13,15 +13,15 @@ import Foundation
 extension LolEsportsClient {
     
     // MARK: Get Leagues
-    func getLeagues(published: Published, completionHandler: (leagues: [League]?, error: NSError?) -> Void) {
+    func getLeagues(published: Published = Published.Yes, completionHandler: (leagues: [League]?, error: NSError?) -> Void) {
     
-        var parameters = [
-            Parameters.Method : Method.All.rawValue,
-            Parameters.Published: published.rawValue
+        var parameters: [String : AnyObject!] = [
+            Parameters.ParametersMethod : Method.All.rawValue,
+            Parameters.ParametersPublished: published.rawValue
             
         ]
         
-        taskGET(Methods.League, parameters: parameters) { json, error in
+        taskGET(Methods.League, parameters: parameters) { (json, error) -> Void in
             
             if let downloadError = error {
                 completionHandler(leagues: nil, error: error)
@@ -48,7 +48,7 @@ extension LolEsportsClient {
             parameters[Parameters.TeamId] = teamIdPara
         }
         
-        taskGET(Methods.Schedule, parameters: parameters) { json, error in
+        taskGET(Methods.Schedule, parameters: parameters) { (json, error) -> Void in
             
             if let downloadError = error {
                 completionHandler(matches: nil, error: error)
@@ -63,7 +63,7 @@ extension LolEsportsClient {
     // MARK: Get Series
     func getSeries(completionHandler: (series: [Series]?, error: NSError?) -> Void) {
         
-        taskGET(Methods.Series, parameters: nil) { json, error in
+        taskGET(Methods.Series, parameters: nil) { (json, error) -> Void in
             
             if let downloadError = error {
                 completionHandler(series: nil, error: error)
@@ -82,7 +82,7 @@ extension LolEsportsClient {
             Parameters.TournamentId : tournamentId
         ]
         
-        taskGET(Methods.Standings, parameters: parameters) { json, error in
+        taskGET(Methods.Standings, parameters: parameters) { (json, error) -> Void in
             
             if let downloadError = error {
                 completionHandler(standings: nil, error: error)
@@ -93,5 +93,23 @@ extension LolEsportsClient {
             
         }
     }
+    
+    func getTournaments(published: Published = Published.Yes, completionHandler: (tournaments: [Tournament]?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [
+            Parameters.Published : published.rawValue
+        ]
+        
+        taskGET(Methods.Tournament, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(tournaments: nil, error: error)
+            } else {
+                let tournaments = Tournament.tournamentsFromResults(json as! [String : AnyObject])
+                completionHandler(tournaments: tournaments, error: nil)
+            }
+        }
+    }
+    
  
 }

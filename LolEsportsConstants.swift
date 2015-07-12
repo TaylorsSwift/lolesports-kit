@@ -33,14 +33,17 @@ extension LolEsportsClient {
         // MARK: Standings
         static let Standings: String = "standings.json"
         
+        // MARK: Tournament
+        static let Tournament: String = "tournament.json"
+        
     }
     
     // MARK: - Parameters
     struct Parameters {
         
         // MARK: League
-        static let Method: String = "parameters[method]"
-        static let Published: String = "parameters[published]"
+        static let ParametersMethod: String = "parameters[method]"
+        static let ParametersPublished: String = "parameters[published]"
         
         // MARK: Schedule
         static let TournamentId: String = "tournamentId"
@@ -48,6 +51,9 @@ extension LolEsportsClient {
         static let IncludeFinished: String = "includeFinished"
         static let IncludeFuture: String = "includeFuture"
         static let IncludeLive: String = "includeLive"
+        
+        // MARK: Tournament
+        static let Published: String = "published"
         
     }
     
@@ -62,10 +68,8 @@ extension LolEsportsClient {
         static let SeriesId: String = "defaultSeriesId"
         static let ShortName: String = "shortName"
         static let LeagueTournaments: String = "leagueTournaments"
-        static let NoVods: String = "noVods"
         static let MenuWeight: String = "menuWeight"
         static let InternationalLiveStream: String = "internationalLiveStream"
-        static let Published: String = "published"
         
         // MARK: LiveStreamLanguage
         static let Language: String = "language"
@@ -81,12 +85,9 @@ extension LolEsportsClient {
         static let MatchId: String = "matchId"
         static let MaxGames: String = "maxGames"
         static let IsLive: String = "isLive"
-        static let IsFinished: String = "isFinished"
         static let LiveStreams: String = "liveStreams"
         static let PolldaddyId: String = "polldaddyId"
-        static let Name: String = "name"
         static let Tournament: String = "tournament"
-        static let Contestants: String = "contestants"
         static let Games: String = "games"
         
         // MARK: MatchTournament
@@ -109,7 +110,6 @@ extension LolEsportsClient {
         
         // MARK: Series
         static let LabelPublic: String = "labelPublic"
-        static let Season: String = "season"
         static let Tournaments: String = "tournaments"
         
         // MARK: Standings
@@ -119,10 +119,24 @@ extension LolEsportsClient {
         static let Losses: String = "losses"
         static let TeamRank: String = "teamRank"
         
+        // MARK: Tournament
+        
+        static let NamePublic: String = "namePublic"
+        static let DateBegin: String = "dateBegin"
+        static let DateEnd: String = "dateEnd"
+        static let Winner: String = "winner"
+        static let TournamentName: String = "tournamentName"
+        
         // MARK: Shared
         static let URL: String = "url"
         static let Id: String = "id"
         static let Label: String = "label"
+        static let Name: String = "name"
+        static let Contestants: String = "contestants"
+        static let IsFinished: String = "isFinished"
+        static let NoVods: String = "noVods"
+        static let Season: String = "season"
+        static let Published: String = "published"
         
     }
     
