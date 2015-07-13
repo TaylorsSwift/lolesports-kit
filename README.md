@@ -60,6 +60,19 @@ LolEsportsClient.sharedInstance().getTournaments(published: LolEsportsClient.Pub
 //Get Tournaments - default to published only
 LolEsportsClient.sharedInstance().getTournaments() { 
     (tournaments, error) -> Void in
+   
+}
+
+// Get News
+LolEsportsClient.sharedInstance().getNews(limit: 10, offset: 0, published: LolEsportsClient.Published.No) { 
+    (news, error) -> Void in
+    // handle the response or error
+}
+
+
+//Get News - default to published only
+LolEsportsClient.sharedInstance().getNews { 
+    (news, error) -> Void in
     // handle the response or error
 }
 

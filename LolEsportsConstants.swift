@@ -36,6 +36,9 @@ extension LolEsportsClient {
         // MARK: Tournament
         static let Tournament: String = "tournament.json"
         
+        // MARK: News
+        static let News: String = "news.json"
+        
     }
     
     // MARK: - Parameters
@@ -52,9 +55,14 @@ extension LolEsportsClient {
         static let IncludeFuture: String = "includeFuture"
         static let IncludeLive: String = "includeLive"
         
-        // MARK: Tournament
-        static let Published: String = "published"
+        // MARK: News
+        static let Limit: String = "limit"
+        static let Offset: String = "offset"
+        static let TaxonomyId: String = "taxonomyId"
+        static let Lang: String = "lang"
         
+        // MARK: Shared
+        static let Published: String = "published"
     }
     
     // MARK: - JSON Keys
@@ -72,7 +80,6 @@ extension LolEsportsClient {
         static let InternationalLiveStream: String = "internationalLiveStream"
         
         // MARK: LiveStreamLanguage
-        static let Language: String = "language"
         static let DisplayLanguage: String = "display_language"
         static let Streams: String = "streams"
         
@@ -127,6 +134,21 @@ extension LolEsportsClient {
         static let Winner: String = "winner"
         static let TournamentName: String = "tournamentName"
         
+        // MARK: News
+        
+        static let Headline: String = "headline"
+        static let Nutgraph: String = "Nutgraph"
+        static let ThumbURL: String = "thumbUrl"
+        static let Marquee: String = "marquee"
+        static let TaxonomyId: String = "taxonomyId"
+        static let TaxonomyName: String = "taxonomyName"
+        static let ImageURL: String = "imageUrl"
+        static let ImageMediumURL: String = "imageMediumUrl"
+        static let ArticleURL: String = "articleUrl"
+        static let Author: String = "author"
+        static let PublishedDate: String = "publishedDate"
+        static let Body: String = "body"
+        
         // MARK: Shared
         static let URL: String = "url"
         static let Id: String = "id"
@@ -137,6 +159,7 @@ extension LolEsportsClient {
         static let NoVods: String = "noVods"
         static let Season: String = "season"
         static let Published: String = "published"
+        static let Language: String = "language"
         
     }
     

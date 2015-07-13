@@ -111,5 +111,38 @@ extension LolEsportsClient {
         }
     }
     
+    func getNews(limit: Int = 10, offset: Int? = nil, taxonomyId: Int? = nil, lang: String? = nil, published: Published = Published.Yes, completionHandler: (news: [News]?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [
+            Parameters.Published : published.rawValue
+        ]
+        
+        if(limit < 1 || limit > 50 ) {
+            parameters[Parameters.Limit] = 10
+        } else {
+            parameters[Parameters.Limit] = limit
+        }
+        if let offsetPara = offset {
+            parameters[Parameters.Offset] = offsetPara
+        }
+        if let taxonomyIdPara = taxonomyId {
+            parameters[Parameters.TaxonomyId] = taxonomyIdPara
+        }
+        if let langPara = lang {
+            parameters[Parameters.Lang] = langPara
+        }
+        
+        
+        taskGET(Methods.News, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(news: nil, error: error)
+            } else {
+                let news = News.newsFromResults(json as! [String : AnyObject])
+                completionHandler(news: news, error: nil)
+            }
+        }
+    }
+    
  
 }
