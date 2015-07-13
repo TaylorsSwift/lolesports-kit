@@ -61,7 +61,7 @@ LolEsportsClient.sharedInstance().getTournaments(published: LolEsportsClient.Pub
 //Get Tournaments - default to published only
 LolEsportsClient.sharedInstance().getTournaments() { 
     (tournaments, error) -> Void in
-   
+    // handle the response or error
 }
 
 // Get News
