@@ -26,7 +26,8 @@ LolEsportsClient.sharedInstance().getLeagues() {
 }
 
 // Get Series
-LolEsportsClient.sharedInstance().getSeries { (series, error) -> Void in
+LolEsportsClient.sharedInstance().getSeries { 
+    (series, error) -> Void in
     // handle the response or error
 }
 
