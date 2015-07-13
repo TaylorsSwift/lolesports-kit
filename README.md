@@ -70,7 +70,6 @@ LolEsportsClient.sharedInstance().getNews(limit: 10, offset: 0, published: LolEs
     // handle the response or error
 }
 
-
 //Get News - default to published only
 LolEsportsClient.sharedInstance().getNews { 
     (news, error) -> Void in
