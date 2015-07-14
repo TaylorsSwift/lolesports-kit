@@ -39,6 +39,9 @@ extension LolEsportsClient {
         // MARK: News
         static let News: String = "news.json"
         
+        // MARK: Stat Leaders
+        static let StatLeaders: String = "statLeaders.json"
+        
     }
     
     // MARK: - Parameters
@@ -61,8 +64,12 @@ extension LolEsportsClient {
         static let TaxonomyId: String = "taxonomyId"
         static let Lang: String = "lang"
         
+        // MARK: Stat Leaders
+        static let Stat: String = "stat"
+        
         // MARK: Shared
         static let Published: String = "published"
+        
     }
     
     // MARK: - JSON Keys
@@ -127,7 +134,6 @@ extension LolEsportsClient {
         static let TeamRank: String = "teamRank"
         
         // MARK: Tournament
-        
         static let NamePublic: String = "namePublic"
         static let DateBegin: String = "dateBegin"
         static let DateEnd: String = "dateEnd"
@@ -135,7 +141,6 @@ extension LolEsportsClient {
         static let TournamentName: String = "tournamentName"
         
         // MARK: News
-        
         static let Headline: String = "headline"
         static let Nutgraph: String = "Nutgraph"
         static let ThumbURL: String = "thumbUrl"
@@ -148,6 +153,13 @@ extension LolEsportsClient {
         static let Author: String = "author"
         static let PublishedDate: String = "publishedDate"
         static let Body: String = "body"
+        
+        // MARK: Stat Leaders
+        static let PlayerName: String = "playerName"
+        static let PlayerId: String = "playerId"
+        static let Value: String = "value"
+        static let Rank: String = "rank"
+        static let GamesPlayed: String = "gamesPlayed"
         
         // MARK: Shared
         static let URL: String = "url"

@@ -94,6 +94,7 @@ extension LolEsportsClient {
         }
     }
     
+    // MARK: Get Tournaments
     func getTournaments(published: Published = Published.Yes, completionHandler: (tournaments: [Tournament]?, error: NSError?) -> Void) {
         
         var parameters: [String : AnyObject!] = [
@@ -111,6 +112,7 @@ extension LolEsportsClient {
         }
     }
     
+    // MARK: Get News
     func getNews(limit: Int = 10, offset: Int? = nil, taxonomyId: Int? = nil, lang: String? = nil, published: Published = Published.Yes, completionHandler: (news: [News]?, error: NSError?) -> Void) {
         
         var parameters: [String : AnyObject!] = [
@@ -132,7 +134,6 @@ extension LolEsportsClient {
             parameters[Parameters.Lang] = langPara
         }
         
-        
         taskGET(Methods.News, parameters: parameters) { (json, error) -> Void in
             
             if let downloadError = error {
@@ -144,5 +145,26 @@ extension LolEsportsClient {
         }
     }
     
+    // MARK: Get Stat Leaders
+    func getStatLeaders(stat: Stat, tournamentId: Int? = nil, completionHandler: (statLeaders: [StatLeader]?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [
+            Parameters.Stat : stat.rawValue
+        ]
+        
+        if let tournamentIdPara = tournamentId {
+            parameters[Parameters.TournamentId] = tournamentIdPara
+        }
+        
+        taskGET(Methods.StatLeaders, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(statLeaders: nil, error: error)
+            } else {
+                let statLeaders = StatLeader.statLeadersFromResults(json as! [String : AnyObject])
+                completionHandler(statLeaders: statLeaders, error: nil)
+            }
+        }
+    }
  
 }

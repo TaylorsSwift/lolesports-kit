@@ -70,9 +70,16 @@ LolEsportsClient.sharedInstance().getNews(limit: 10, offset: 0, published: LolEs
     // handle the response or error
 }
 
-//Get News - default to published only
+// Get News - default to published only
 LolEsportsClient.sharedInstance().getNews { 
     (news, error) -> Void in
+    // handle the response or error
+}
+
+// Get Stat Leaders
+let tournamentId = 226
+LolEsportsClient.sharedInstance().getStatLeaders(LolEsportsClient.Stat.Kills, tournamentId: tournamentId) { 
+    (statLeaders, error) -> Void in
     // handle the response or error
 }
 

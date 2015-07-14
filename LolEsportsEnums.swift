@@ -23,4 +23,17 @@ extension LolEsportsClient {
         
         case All = "all"
     }
+    
+    // Values for statsLeaders stats parameter, stats
+    enum Stat : String {
+        
+        case KDA = "kda"
+        case KillParticipation = "killparticipation"
+        case GPM = "gpm"
+        case TotalGold = "totalgold"
+        case Kills = "kills"
+        case Deaths = "deaths"
+        case Assists = "assists"
+        case MinionsKilled = "minionskilled"
+    }
 }
