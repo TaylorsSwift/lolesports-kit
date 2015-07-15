@@ -166,5 +166,105 @@ extension LolEsportsClient {
             }
         }
     }
+    
+    // MARK: Get Player Stats
+    func getPlayerStats(playerId: Int, tournamentId: Int? = nil, completionHandler: (playerStats: PlayerStats?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [
+            Parameters.PlayerId : playerId
+        ]
+        
+        if let tournamentIdPara = tournamentId {
+            parameters[Parameters.TournamentId] = tournamentIdPara
+        }
+        
+        taskGET(Methods.PlayerStats, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(playerStats: nil, error: error)
+            } else {
+                let playerStats = PlayerStats(data: json as! [String : AnyObject])
+                completionHandler(playerStats: playerStats, error: nil)
+            }
+        }
+    }
+    
+    // MARK: Get Team Stats
+    func getTeamStats(teamId: Int, tournamentId: Int? = nil, completionHandler: (teamStats: TeamStats?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [
+            Parameters.TeamId : teamId
+        ]
+        
+        if let tournamentIdPara = tournamentId {
+            parameters[Parameters.TournamentId] = tournamentIdPara
+        }
+        
+        taskGET(Methods.TeamStats, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(teamStats: nil, error: error)
+            } else {
+                let teamStats = TeamStats(data: json as! [String : AnyObject])
+                completionHandler(teamStats: teamStats, error: nil)
+            }
+        }
+    }
+    
+    // MARK: Get All Player Stats
+    func getAllPlayerStats(tournamentId: Int? = nil, completionHandler: (allPlayerStats: [String : AllPlayerStats]?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [String : AnyObject]()
+        
+        if let tournamentIdPara = tournamentId {
+            parameters[Parameters.TournamentId] = tournamentIdPara
+        }
+        
+        taskGET(Methods.AllPlayerStats, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(allPlayerStats: nil, error: error)
+            } else {
+                let allPlayerStats = AllPlayerStats.playerStatsFromResults(json as! [String : AnyObject])
+                completionHandler(allPlayerStats: allPlayerStats, error: nil)
+            }
+        }
+    }
+    
+    // MARK: Get Game Stats Fantasy
+    func getGameStatsFantasy(tournamentId: Int, dateBegin: Int? = nil, dateEnd: Int? = nil, completionHandler: (fantasyStats: FantasyStats?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [
+            Parameters.TournamentId : tournamentId
+        ]
+        
+        taskGET(Methods.GameStatsFantasy, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(fantasyStats: nil, error: error)
+            } else {
+                let fantasyStats = FantasyStats(data: json as! [String : AnyObject])
+                completionHandler(fantasyStats: fantasyStats, error: nil)
+            }
+        }
+    }
+    
+    // MARK: Get Programming
+    func getProgramming(tournamentId: Int, dateBegin: Int? = nil, dateEnd: Int? = nil, completionHandler: (programming: Programming?, error: NSError?) -> Void) {
+        
+        var parameters: [String : AnyObject!] = [
+            Parameters.TournamentId : tournamentId
+        ]
+        
+        taskGET(Methods.Programming, parameters: parameters) { (json, error) -> Void in
+            
+            if let downloadError = error {
+                completionHandler(programming: nil, error: error)
+            } else {
+                let programming = Programming(data: json as! [String : AnyObject])
+                completionHandler(programming: programming, error: nil)
+            }
+        }
+    }
  
 }

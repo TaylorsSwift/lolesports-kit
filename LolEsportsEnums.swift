@@ -22,6 +22,9 @@ extension LolEsportsClient {
     enum Method : String {
         
         case All = "all"
+        case Time = "time"
+        case Next = "next"
+        case Previous = "prev"
     }
     
     // Values for statsLeaders stats parameter, stats

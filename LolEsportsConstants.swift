@@ -42,18 +42,27 @@ extension LolEsportsClient {
         // MARK: Stat Leaders
         static let StatLeaders: String = "statLeaders.json"
         
+        // MARK: Player Stats
+        static let PlayerStats: String = "playerStats.json"
+        
+        // MARK: Team Stats
+        static let TeamStats: String = "teamStats.json"
+        
+        // MARK: All Player Stats
+        static let AllPlayerStats: String = "all-player-stats.json"
+        
+        // MARK: Game Stats Fantasy
+        static let GameStatsFantasy: String = "gameStatsFantasy.json"
+        
+        // MARK: Programming
+        static let Programming: String = "programming.json"
+        
     }
     
     // MARK: - Parameters
     struct Parameters {
         
-        // MARK: League
-        static let ParametersMethod: String = "parameters[method]"
-        static let ParametersPublished: String = "parameters[published]"
-        
         // MARK: Schedule
-        static let TournamentId: String = "tournamentId"
-        static let TeamId: String = "teamId"
         static let IncludeFinished: String = "includeFinished"
         static let IncludeFuture: String = "includeFuture"
         static let IncludeLive: String = "includeLive"
@@ -67,8 +76,26 @@ extension LolEsportsClient {
         // MARK: Stat Leaders
         static let Stat: String = "stat"
         
+        // MARK: Player Stats
+        static let PlayerId: String = "playerId"
+        
+        // MARK: Game Stats Fantasy
+        static let DateBegin: String = "dateBegin"
+        static let DateEnd: String = "dateEnd"
+        
+        // MARK: Programming
+        static let ParametersWinner: String = "parameters[winner]"
+        static let ParametersExpandMatches: String = "parameters[expand_matches]"
+        static let ParametersTime: String = "parameters[time]"
+        static let ParametersLimit: String = "parameters[limit]"
+        static let ParametersTournament: String = "parameters[tournament]"
+        
         // MARK: Shared
         static let Published: String = "published"
+        static let TournamentId: String = "tournamentId"
+        static let TeamId: String = "teamId"
+        static let ParametersMethod: String = "parameters[method]"
+        static let ParametersPublished: String = "parameters[published]"
         
     }
     
@@ -79,8 +106,8 @@ extension LolEsportsClient {
         static let Leagues: String = "leagues"
         static let Color: String = "color"
         static let LeagueImage: String = "leagueImage"
-        static let TournamentId: String = "defaultTournamentId"
-        static let SeriesId: String = "defaultSeriesId"
+        static let DefaultTournamentId: String = "defaultTournamentId"
+        static let DefaultSeriesId: String = "defaultSeriesId"
         static let ShortName: String = "shortName"
         static let LeagueTournaments: String = "leagueTournaments"
         static let MenuWeight: String = "menuWeight"
@@ -94,9 +121,7 @@ extension LolEsportsClient {
         static let Title: String = "title"
         
         // MARK: Match
-        static let DateTime: String = "dateTime"
         static let WinnerId: String = "winnerId"
-        static let MatchId: String = "matchId"
         static let MaxGames: String = "maxGames"
         static let IsLive: String = "isLive"
         static let LiveStreams: String = "liveStreams"
@@ -124,7 +149,6 @@ extension LolEsportsClient {
         
         // MARK: Series
         static let LabelPublic: String = "labelPublic"
-        static let Tournaments: String = "tournaments"
         
         // MARK: Standings
         static let TeamId: String = "teamId"
@@ -138,7 +162,6 @@ extension LolEsportsClient {
         static let DateBegin: String = "dateBegin"
         static let DateEnd: String = "dateEnd"
         static let Winner: String = "winner"
-        static let TournamentName: String = "tournamentName"
         
         // MARK: News
         static let Headline: String = "headline"
@@ -152,14 +175,56 @@ extension LolEsportsClient {
         static let ArticleURL: String = "articleUrl"
         static let Author: String = "author"
         static let PublishedDate: String = "publishedDate"
-        static let Body: String = "body"
         
         // MARK: Stat Leaders
-        static let PlayerName: String = "playerName"
-        static let PlayerId: String = "playerId"
         static let Value: String = "value"
         static let Rank: String = "rank"
-        static let GamesPlayed: String = "gamesPlayed"
+        
+        // MARK: Player Stats
+        static let KillParticipation: String = "killParticipation"
+        
+        // MARK: Team Stats
+        static let Stats: String = "stats"
+        
+        // MARK: All Player Stats
+        static let AverageTotalGold: String = "average total_gold"
+        
+        // MARK: Game Stats Fantasy
+        static let TeamStats: String = "teamStats"
+        static let PlayerStats: String = "playerStats"
+        static let Team1: String = "team0"
+        static let Team2: String = "team1"
+        static let TimePlayed: String = "timePlayed"
+        static let TeamName: String = "teamName"
+        static let TeamID: String = "teamID"
+        static let MatchVictory: String = "matchVictory"
+        static let MatchDefeat: String = "matchDefeat"
+        static let BaronsKilled: String = "baronsKilled"
+        static let DragonsKilled: String = "dragonsKilled"
+        static let FirstBlood: String = "firstBlood"
+        static let FirstTower: String = "firstTower"
+        static let FirstInhibitor: String = "firstInhibitor"
+        static let TowersKilled: String = "towersKilled"
+        static let MinionKills: String = "minionKills"
+        static let DoubleKills: String = "doubleKills"
+        static let TripleKills: String = "tripleKills"
+        static let QuadraKills: String = "quadraKills"
+        static let PentaKills: String = "pentaKills"
+        static let Role: String = "role"
+        
+        // MARK: Programming
+        
+        static let BlockId: String = "blockId"
+        static let Tickets: String = "tickets"
+        static let Matches: String = "matches"
+        static let LeagueId: String = "leagueId"
+        static let Significance: String = "significance"
+        static let TBDTime: String = "tbdTime"
+        static let LeagueColor: String = "leagueColor"
+        static let Week: String = "week"
+        static let RebroadcastDate: String = "rebroadcastDate"
+        static let BodyTitle: String = "bodyTitle"
+        static let BodyTime: String = "bodyTime"
         
         // MARK: Shared
         static let URL: String = "url"
@@ -172,6 +237,23 @@ extension LolEsportsClient {
         static let Season: String = "season"
         static let Published: String = "published"
         static let Language: String = "language"
+        static let GamesPlayed: String = "gamesPlayed"
+        static let Tournaments: String = "tournaments"
+        static let GPM: String = "gpm"
+        static let TotalGold: String = "totalGold"
+        static let Kills: String = "kills"
+        static let Deaths: String = "deaths"
+        static let Assists: String = "assists"
+        static let MinionsKilled: String = "minionsKilled"
+        static let SecondsPlayed: String = "secondsPlayed"
+        static let KDA: String = "kda"
+        static let TournamentId: String = "tournamentId"
+        static let TournamentName: String = "tournamentName"
+        static let DateTime: String = "dateTime"
+        static let MatchId: String = "matchId"
+        static let PlayerId: String = "playerId"
+        static let PlayerName: String = "playerName"
+        static let Body: String = "body"
         
     }
     

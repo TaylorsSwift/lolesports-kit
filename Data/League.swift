@@ -29,8 +29,8 @@ struct League {
         id = data[LolEsportsClient.JSONKeys.Id] as! String
         color = data[LolEsportsClient.JSONKeys.Color] as? String
         leagueImage = data[LolEsportsClient.JSONKeys.LeagueImage] as? String
-        tournamentId = data[LolEsportsClient.JSONKeys.TournamentId] as? String
-        seriesId = data[LolEsportsClient.JSONKeys.SeriesId] as? String
+        tournamentId = data[LolEsportsClient.JSONKeys.DefaultTournamentId] as? String
+        seriesId = data[LolEsportsClient.JSONKeys.DefaultSeriesId] as? String
         shortName = data[LolEsportsClient.JSONKeys.ShortName] as? String
         leagueTournaments = data[LolEsportsClient.JSONKeys.LeagueTournaments] as? [Int]
         url = data[LolEsportsClient.JSONKeys.URL] as? String
