@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>eSports Kit by rithms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">eSports Kit</h1>
+      <h2 class="project-tagline">Swift API for LoL eSports (lolesports.com API)</h2>
+      <a href="https://github.com/rithms/lolesports-kit" class="btn">View on GitHub</a>
+      <a href="https://github.com/rithms/lolesports-kit/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rithms/lolesports-kit/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="esports-kit" class="anchor" href="#esports-kit" aria-hidden="true"><span class="octicon octicon-link"></span></a>eSports Kit</h1>
+
+<p>League of Legends eSports iOS client library for acessing the lolesports.com REST API</p>
+
+<h2>
+<a id="info" class="anchor" href="#info" aria-hidden="true"><span class="octicon octicon-link"></span></a>Info</h2>
+
+<p>This library was initially created for an iPhone app I created during a hackathon. Because the app didn't make use the whole lolesports.com API, a lot of the endpoints are missing. With that said this is currently a work in progress, and will support all the endpoints soon.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Once the project is complete, it will be available via cocoapods. For now, add it directly to your own project.</p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<div class="highlight highlight-swift"><pre><span class="pl-c">// Get Leagues</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getLeagues(published: LolEsportsClient<span class="pl-k">.</span>Published<span class="pl-k">.</span>No) {
+    (leagues, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get Leagues - default to published only</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getLeagues() {
+    (leagues, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get Series</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getSeries { 
+    (series, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get Schedule</span>
+<span class="pl-k">let</span> tournamentId: <span class="pl-c1">Int</span> <span class="pl-k">=</span> <span class="pl-c1">226</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getSchedule(tournamentId, includeFinished: <span class="pl-c1">false</span>, includeFuture: <span class="pl-c1">true</span>, includeLive: <span class="pl-c1">false</span>) { 
+    (matches, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get Schedule - default to include finished, future, and live matches</span>
+<span class="pl-k">let</span> tournamentId: <span class="pl-c1">Int</span> <span class="pl-k">=</span> <span class="pl-c1">226</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getSchedule(tournamentId) { 
+    (matches, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get Standings</span>
+<span class="pl-k">let</span> tournamentId: <span class="pl-c1">Int</span> <span class="pl-k">=</span> <span class="pl-c1">226</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getStandings(tournamentId) { 
+    (standings, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get Tournaments</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getTournaments(published: LolEsportsClient<span class="pl-k">.</span>Published<span class="pl-k">.</span>No) { 
+    (tournaments, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">//Get Tournaments - default to published only</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getTournaments() { 
+    (tournaments, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get News</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getNews(limit: <span class="pl-c1">10</span>, offset: <span class="pl-c1">0</span>, published: LolEsportsClient<span class="pl-k">.</span>Published<span class="pl-k">.</span>No) { 
+    (news, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get News - default to published only</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getNews { 
+    (news, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+
+<span class="pl-c">// Get Stat Leaders</span>
+<span class="pl-k">let</span> tournamentId <span class="pl-k">=</span> <span class="pl-c1">226</span>
+LolEsportsClient<span class="pl-k">.</span>sharedInstance()<span class="pl-k">.</span>getStatLeaders(LolEsportsClient<span class="pl-k">.</span>Stat<span class="pl-k">.</span>Kills, tournamentId: tournamentId) { 
+    (statLeaders, error) <span class="pl-k">-&gt;</span> Void <span class="pl-k">in</span>
+    <span class="pl-c">// handle the response or error</span>
+}
+</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rithms/lolesports-kit">eSports Kit</a> is maintained by <a href="https://github.com/rithms">rithms</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
