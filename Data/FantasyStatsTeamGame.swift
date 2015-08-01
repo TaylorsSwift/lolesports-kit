@@ -11,18 +11,30 @@ import Foundation
 struct FantasyStatsTeamGame {
     
     var dateTime: NSDate? // Timestamp of when this game was played
-    //var team1: TeamFantasyStats? // Team fantasy stats. '0' object key will be id of the team
-    //var team2: TeamFantasyStats? // Team fantasy stats. '1' object key will be id of the team
+    var team1: TeamFantasyStats? // Team fantasy stats. '0' object key will be id of the team
+    var team2: TeamFantasyStats? // Team fantasy stats. '1' object key will be id of the team
     var timePlayed: Int? // Time played in seconds
     var matchId: Int? // Match ID
     
     init(data: [String : AnyObject]) {
-
-        let date = data[LolEsportsClient.JSONKeys.DateTime] as? String
-        dateTime = date?.toNSDate()
-        timePlayed = data[LolEsportsClient.JSONKeys.TimePlayed] as? Int
-        matchId = data[LolEsportsClient.JSONKeys.MatchId] as? Int
-        
+        for(key, value) in data {
+            switch(key) {
+            case LolEsportsClient.JSONKeys.DateTime:
+                let date = data[key] as? String
+                dateTime = date?.toNSDate()
+            case LolEsportsClient.JSONKeys.TimePlayed:
+                timePlayed = data[key] as? Int
+            case LolEsportsClient.JSONKeys.MatchId:
+                let id = data[key] as? String
+                matchId = id?.toInt()
+            default:
+                if let firstTeam = team1 {
+                    team2 = TeamFantasyStats(data: data[key]!)
+                } else {
+                    team1 = TeamFantasyStats(data: data[key]!)
+                }
+            }
+        }
     }
     
     static func teamStatsFromResults(results: [String : AnyObject]) -> [FantasyStatsTeamGame] {

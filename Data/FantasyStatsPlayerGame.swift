@@ -11,14 +11,26 @@ import Foundation
 struct FantasyStatsPlayerGame {
     
     var dateTime: NSDate? // Timestamp of when this game was played
-    var matchId: String? // Match ID
-    //var players: [PlayerFantasyStats]?
+    var matchId: Int? // Match ID
+    var players: [PlayerFantasyStats]?
     
     init(data: [String : AnyObject]) {
         
-        let date = data[LolEsportsClient.JSONKeys.DateTime] as? String
-        dateTime = date?.toNSDate()
-        matchId = data[LolEsportsClient.JSONKeys.MatchId] as? String
+        for (key, value) in data {
+            switch(key) {
+            case LolEsportsClient.JSONKeys.DateTime:
+                let date = data[key] as? String
+                dateTime = date?.toNSDate()
+            case LolEsportsClient.JSONKeys.MatchId:
+                let id = data[LolEsportsClient.JSONKeys.MatchId] as? String
+                matchId = id?.toInt()
+            default:
+                if players == nil {
+                    players = [PlayerFantasyStats]()
+                }
+                players?.append(PlayerFantasyStats(data: data[key]!))
+            }
+        }
     }
     
     static func playerStatsFromResults(results: [String : AnyObject]) -> [FantasyStatsPlayerGame] {

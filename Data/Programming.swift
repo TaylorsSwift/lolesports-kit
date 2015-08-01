@@ -13,7 +13,7 @@ struct Programming {
     var blockId: String? // The unique numeric identifier for this programming block
     var dateTime: NSDate? // Timestamp for this programming block
     var tickets: String? // URL for page to puchase tickets for this programming block
-    var matches: [String]? // Match IDs for matches in this programming block
+    var matches: [Int]? // Match IDs for matches in this programming block
     var leagueId: String? // League ID for the league this programming block belongs to
     var tournamentId: String? // Tournament ID for the tournament this programming block belongs to
     var tournamentName: String? // Name of the tournament this programming block belongs to
@@ -29,9 +29,16 @@ struct Programming {
         
         blockId = data[LolEsportsClient.JSONKeys.BlockId] as? String
         let date = data[LolEsportsClient.JSONKeys.DateTime] as? String
-        dateTime = date?.toNSDate()
+        dateTime = date?.toNSDate(format: "yyyy-MM-dd'T'HH:mm:ssZ")
         tickets = data[LolEsportsClient.JSONKeys.Tickets] as? String
-        matches = data[LolEsportsClient.JSONKeys.Matches] as? [String]
+        if let matchesArray = data[LolEsportsClient.JSONKeys.Matches] as? [String] {
+            for match in matchesArray {
+                if matches == nil {
+                    matches = [Int]()
+                }
+                matches?.append(match.toInt()!)
+            }
+        }
         leagueId = data[LolEsportsClient.JSONKeys.LeagueId] as? String
         tournamentId = data[LolEsportsClient.JSONKeys.TournamentId] as? String
         tournamentName = data[LolEsportsClient.JSONKeys.TournamentName] as? String
@@ -43,5 +50,16 @@ struct Programming {
         rebroadcastDate = data[LolEsportsClient.JSONKeys.RebroadcastDate] as? String
         label = data[LolEsportsClient.JSONKeys.Label] as? String
         body = ProgrammingBody.programmingBodiesFromResults(data[LolEsportsClient.JSONKeys.Body] as! [AnyObject])
+    }
+    
+    static func programmingsFromResults(results: [[String : AnyObject]]) -> [Programming] {
+        
+        var programmings = [Programming]()
+        
+        for value in results {
+            programmings.append(Programming(data: value))
+        }
+        
+        return programmings
     }
 }

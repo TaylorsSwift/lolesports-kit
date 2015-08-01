@@ -18,7 +18,7 @@ struct ProgrammingBody {
         bodyTitle = data[LolEsportsClient.JSONKeys.BodyTitle] as? String
         body = data[LolEsportsClient.JSONKeys.Body] as? String
         let date = data[LolEsportsClient.JSONKeys.BodyTime] as? String
-        bodyTime = date?.toNSDate()
+        bodyTime = date?.toNSDate(format: "yyyy-MM-dd'T'HH:mm:ssZ")
     }
     
     static func programmingBodiesFromResults(results: [AnyObject]) -> [ProgrammingBody] {

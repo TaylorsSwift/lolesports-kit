@@ -54,7 +54,13 @@ class LolEsportsClient : NSObject {
         if let error = parsingError {
             completionHandler(result: nil, error: error)
         } else {
-            completionHandler(result: parsedResult, error: nil)
+            if let jsonArray: [AnyObject] = parsedResult as? [AnyObject] {
+                if jsonArray.isEmpty {
+                    completionHandler(result: nil, error: NSError(domain: "Not Found.", code: 404, userInfo: nil))
+                }
+            } else {
+                completionHandler(result: parsedResult, error: nil)
+            }
         }
     }
     

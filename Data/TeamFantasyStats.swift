@@ -22,7 +22,6 @@ struct TeamFantasyStats {
     var towersKilled: Int? // Total number of towers taken down by this team
     
     init(data: AnyObject) {
-        
         teamID = data[LolEsportsClient.JSONKeys.TeamID] as? Int
         teamName = data[LolEsportsClient.JSONKeys.TeamName] as? String
         matchVictory = data[LolEsportsClient.JSONKeys.MatchVictory] as? Int

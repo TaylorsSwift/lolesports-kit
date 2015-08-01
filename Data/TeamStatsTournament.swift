@@ -11,16 +11,15 @@ import Foundation
 struct TeamStatsTournament {
     
     var tournamentId: Int // Unique identifier for this tournament
-    var stats: [TeamStat] // Collection of team stats
+    var stats: TeamStat // Collection of team stats
     
     init(data: AnyObject) {
+        let teamStat: [String : AnyObject] = data[LolEsportsClient.JSONKeys.Stats] as! [String : AnyObject]
+        stats = TeamStat(data : teamStat)
         tournamentId = data[LolEsportsClient.JSONKeys.TournamentId] as! Int
-        if let teamStats = data[LolEsportsClient.JSONKeys.Stats] as? [AnyObject] {
-            stats = TeamStat.teamStatsFromResults(teamStats)
-        }
     }
     
-    static func tournamentsFromResults(results: [AnyObject]) -> [TeamStatsTournament]{
+    static func tournamentsFromResults(results: [AnyObject]) -> [TeamStatsTournament] {
         
         var tournaments = [TeamStatsTournament]()
         

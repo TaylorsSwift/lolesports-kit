@@ -18,7 +18,6 @@ extension LolEsportsClient {
         var parameters: [String : AnyObject!] = [
             Parameters.ParametersMethod : Method.All.rawValue,
             Parameters.ParametersPublished: published.rawValue
-            
         ]
         
         taskGET(Methods.League, parameters: parameters) { (json, error) -> Void in
@@ -53,8 +52,15 @@ extension LolEsportsClient {
             if let downloadError = error {
                 completionHandler(matches: nil, error: error)
             } else {
+                /*if let check: [AnyObject] = json as? [AnyObject]{
+                    if check.isEmpty {
+                        println("poop")
+                        completionHandler(matches: [Match](), error: nil)
+                    }
+                } else {*/
                 let matches = Match.matchesFromResults(json as! [String : AnyObject])
                 completionHandler(matches: matches, error: nil)
+                //}
             }
             
         }
@@ -212,7 +218,7 @@ extension LolEsportsClient {
     }
     
     // MARK: Get All Player Stats
-    func getAllPlayerStats(tournamentId: Int? = nil, completionHandler: (allPlayerStats: [String : AllPlayerStats]?, error: NSError?) -> Void) {
+    func getAllPlayerStats(tournamentId: Int? = nil, completionHandler: (allPlayerStats: [AllPlayerStats]?, error: NSError?) -> Void) {
         
         var parameters: [String : AnyObject!] = [String : AnyObject]()
         
@@ -250,18 +256,23 @@ extension LolEsportsClient {
     }
     
     // MARK: Get Programming
-    func getProgramming(tournamentId: Int, dateBegin: Int? = nil, dateEnd: Int? = nil, completionHandler: (programming: Programming?, error: NSError?) -> Void) {
+    func getProgramming(tournamentId: Int? = nil, published: Published = Published.Yes, completionHandler: (programming: [Programming]?, error: NSError?) -> Void) {
         
         var parameters: [String : AnyObject!] = [
-            Parameters.TournamentId : tournamentId
+            Parameters.ParametersMethod : Method.All.rawValue,
+            Parameters.ParametersPublished: published.rawValue
         ]
+        
+        if let tournamentIdPara = tournamentId {
+            parameters[Parameters.TournamentId] = tournamentIdPara
+        }
         
         taskGET(Methods.Programming, parameters: parameters) { (json, error) -> Void in
             
             if let downloadError = error {
                 completionHandler(programming: nil, error: error)
             } else {
-                let programming = Programming(data: json as! [String : AnyObject])
+                let programming = Programming.programmingsFromResults(json as! [[String : AnyObject]])
                 completionHandler(programming: programming, error: nil)
             }
         }
