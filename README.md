@@ -4,11 +4,7 @@ League of Legends eSports iOS client library for acessing the lolesports.com RES
 
 ## Info
 
-This library was initially created for an iPhone app I created during a hackathon. Because the app didn't make use the whole lolesports.com API, a lot of the endpoints are missing. With that said this is currently a work in progress, and will support all the endpoints soon.
-
-## Usage
-
-Once the project is complete, it will be available via cocoapods. For now, add it directly to your own project.
+This library was initially created for an iPhone app I created during a hackathon. Because the app didn't make use the whole lolesports.com API, a lot of the endpoints are missing. With that said this is currently a work in progress. The lolesports.com API is constantly being updated and changed, as it is not an officially supported API, so keeping this updated could be a challenge. ;o
 
 ## Examples
 
