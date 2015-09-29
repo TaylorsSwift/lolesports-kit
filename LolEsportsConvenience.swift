@@ -54,7 +54,6 @@ extension LolEsportsClient {
             } else {
                 /*if let check: [AnyObject] = json as? [AnyObject]{
                     if check.isEmpty {
-                        println("poop")
                         completionHandler(matches: [Match](), error: nil)
                     }
                 } else {*/
