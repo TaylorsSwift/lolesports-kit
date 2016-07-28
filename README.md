@@ -1,6 +1,6 @@
 # LoL eSports Kit
 
-League of Legends eSports iOS client library for acessing the lolesports.com REST API
+League of Legends eSports iOS client library for accessing the lolesports.com REST API
 
 ## Info
 
