@@ -4,7 +4,7 @@ League of Legends eSports iOS client library for accessing the lolesports.com RE
 
 ## Info
 
-#####Update: The lolesports.com API has been completely changed. So this library is no longer useable. I may update it in the future to support the new API, but as of now there is no official documentation and I have no use for it.
+#####Update: The lolesports.com API has been completely changed, so this library is no longer usable.
 
 ## Examples
 
